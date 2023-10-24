@@ -2,19 +2,12 @@ import { Product } from "./types";
 
 const urlBase = "https://frasers-workshop-api.vercel.app";
 
-const sleep = (timeout: number) =>
-  new Promise((resolve) => setTimeout(resolve, timeout));
-
 const api = {
   product: {
     list: async (): Promise<Product[]> =>
       fetch(`${urlBase}/api/products`).then((res) => res.json()),
-    fetch: async (handle: string): Promise<Product> => {
-      await sleep(5000); // Sleep to see the streaming in action
-      return fetch(`${urlBase}/api/products/${handle}`).then((res) =>
-        res.json(),
-      );
-    },
+    fetch: async (handle: string): Promise<Product> =>
+      fetch(`${urlBase}/api/products/${handle}`).then((res) => res.json()),
   },
 };
 
